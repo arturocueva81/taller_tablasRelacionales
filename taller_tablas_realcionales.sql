@@ -68,3 +68,35 @@ INSERT INTO libro_autor (la_libro_codigo_fk, la_autor_id_fk, anio_publicacion) V
 SELECT * FROM libros;
 SELECT * FROM autores;
 SELECT * FROM libro_autor;
+
+-- 5. consultas SQL
+-- Consulta 1 Mostrar: título del libro, nombre del autor, país, año de publicación
+-- Utilizando INNER JOIN.
+SELECT l.titulo, a.nombre, a.pais, la.anio_publicacion
+FROM libro_autor la
+INNER JOIN libros l ON la.la_libro_codigo_fk = l.codigo
+INNER JOIN autores a ON la.la_autor_id_fk = a.id;
+
+--Consulta 2: Mostrar únicamente libros publicados después del año 2020.
+SELECT l.titulo, la.anio_publicacion
+FROM libro_autor la
+INNER JOIN libros l ON la.la_libro_codigo_fk = l.codigo
+WHERE la.anio_publicacion > 2020;
+
+-- Consulta 3: Mostrar únicamente autores de un país específico usando WHERE.
+SELECT id, nombre, pais
+FROM autores
+WHERE pais = 'Colombia';
+
+--Consulta 4: Ordenar los libros por año de publicación descendente.
+SELECT l.titulo, la.anio_publicacion
+FROM libro_autor la
+INNER JOIN libros l ON la.la_libro_codigo_fk = l.codigo
+ORDER BY la.anio_publicacion DESC;
+
+-- Consulta 5: Contar cuántos libros tiene cada autor utilizando:COUNT(),GROUP BY
+SELECT a.nombre, COUNT(la.la_libro_codigo_fk) AS total_libros
+FROM autores a
+INNER JOIN libro_autor la ON a.id = la.la_autor_id_fk
+GROUP BY a.nombre
+ORDER BY total_libros DESC;

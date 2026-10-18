@@ -100,3 +100,26 @@ FROM autores a
 INNER JOIN libro_autor la ON a.id = la.la_autor_id_fk
 GROUP BY a.nombre
 ORDER BY total_libros DESC;
+
+-- parte 6 modificacion de la tabla: agregar la columna precio a libros
+ALTER TABLE libros
+ADD COLUMN precio DOUBLE PRECISION;
+
+SELECT * FROM libros
+
+--actualizar precios
+UPDATE libros SET precio = 25.50 
+WHERE codigo = 'L0001';
+
+UPDATE libros SET precio = 19.99 
+WHERE codigo = 'L0002';
+
+UPDATE libros SET precio = 22.75 
+WHERE codigo = 'L0003';
+
+UPDATE libros SET precio = 30.00 
+WHERE codigo = 'L0004';
+
+-- consulta que muestre titulo y precio
+SELECT titulo, precio
+FROM libros;

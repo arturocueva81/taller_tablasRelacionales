@@ -42,3 +42,29 @@ CREATE TABLE libro_autor (
 );
 
 SELECT * FROM libro_autor;
+
+-- parte 4 insertar datos
+-- libros, 4 registros
+INSERT INTO libros (codigo, titulo, paginas) VALUES
+    ('L0001', 'Cien anios de soledad', 471),
+    ('L0002', 'El amor en los tiempos del colera', 368),
+    ('L0003', 'La casa de los espiritus', 433),
+    ('L0004', 'Rayuela', 635);
+
+--  autores, 3 registros
+INSERT INTO autores (id, nombre, pais) VALUES
+    (1, 'Gabriel Garcia Marquez', 'Colombia'),
+    (2, 'Isabel Allende', 'Chile'),
+    (3, 'Julio Cortazar', 'Argentina');
+
+-- libro_autor,5 relaciones
+INSERT INTO libro_autor (la_libro_codigo_fk, la_autor_id_fk, anio_publicacion) VALUES
+    ('L0001', 1, 2021),
+    ('L0002', 1, 2022),
+    ('L0003', 2, 2019),
+    ('L0004', 3, 2023),
+    ('L0001', 3, 2020);
+
+SELECT * FROM libros;
+SELECT * FROM autores;
+SELECT * FROM libro_autor;
